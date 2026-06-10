@@ -1,0 +1,1 @@
+declare all styles and js files in this folder 
