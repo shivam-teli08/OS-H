@@ -1,1 +1,3 @@
-OS-H is a Flask-based platform that helps developers discover beginner-friendly GitHub issues, track their open-source contributions, and connect with maintainers more effectively. Users can log in with GitHub, save issues to a personal dashboard, track contribution progress, and receive AI-assisted maintainer outreach suggestions.
+OS-H is a Flask-based platform that helps developers discover beginner-friendly GitHub issues,track their open-source contributions, and connect with maintainers more effectively. Users can log in with GitHub, save issues to a personal dashboard, track contribution progress, and receive AI-assisted maintainer outreach suggestions.
+
+
