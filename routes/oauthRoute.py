@@ -1,7 +1,6 @@
 import os
-
 import requests
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template,session,redirect
 from redisConnection import redisConnection
 from services.oAuthUrl import login as github_login_redirect
 
@@ -10,6 +9,8 @@ oauthRoute_bp = Blueprint("oauthRoute", __name__)
 
 @oauthRoute_bp.route("/login")
 def login():
+    if session.get("github_id") and session.get("username"):
+        return redirect("/dashboard")
     return render_template("oAuth.html")
 
 
@@ -75,9 +76,10 @@ def callback():
         return {"error": "Failed to fetch GitHub user"}, user_res.status_code
 
     user = user_res.json()
+    session.permanent=True   
+    session["github_id"]=user.get("id")
+    session["username"]=user.get("login")
+    session["avatar"]=user.get("avatar_url") 
 
-    return {
-        "github_id": user.get("id"),
-        "username": user.get("login"),
-        "avatar": user.get("avatar_url"),
-    }
+    return redirect("/dashboard")
+    
