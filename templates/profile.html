@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username }} | OS-H Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+    <div class="dashboard-layout shell">
+        <aside class="sidebar">
+            <a class="brand" href="{{ url_for('dashBoardRoute.dashboard') }}">
+                <span class="brand-mark">OS</span>
+                <span>OS-H</span>
+            </a>
+            <nav class="grid">
+                <a class="nav-link" href="{{ url_for('dashBoardRoute.dashboard') }}">Dashboard</a>
+                <a class="nav-link active" href="{{ url_for('dashBoardRoute.profile') }}">Profile</a>
+                <a class="nav-link" href="{{ url_for('dashBoardRoute.editProfile') }}">Edit profile</a>
+            </nav>
+        </aside>
+
+        <main class="main">
+            <div class="container">
+                <header class="page-head">
+                    <div>
+                        <span class="eyebrow">Contributor profile</span>
+                        <h1 style="margin: 0.75rem 0 0.25rem;">{{ user.username }}</h1>
+                        <p class="muted">{{ user.bio or "Add a short bio so other contributors know what you like building." }}</p>
+                    </div>
+                    <div class="actions" style="margin-top: 0;">
+                        <a class="btn" href="https://github.com/{{ user.username }}" target="_blank" rel="noreferrer">GitHub</a>
+                        <a class="btn primary" href="{{ url_for('dashBoardRoute.editProfile') }}">Edit profile</a>
+                    </div>
+                </header>
+
+                <section class="card panel profile-header">
+                    <img src="{{ user.avatar_url }}" alt="{{ user.username }} profile picture" class="avatar">
+                    <div>
+                        <span class="badge">GitHub ID: {{ user.github_id }}</span>
+                        <h2 style="margin: 1rem 0 0.5rem;">{{ user.username }}</h2>
+                        <p class="lead">{{ user.bio or "Your profile is ready for a bio." }}</p>
+                    </div>
+                </section>
+
+                <section class="grid two-col" style="margin-top: 1rem;">
+                    <div class="card panel">
+                        <h2>Profile details</h2>
+                        <div class="detail-list">
+                            <div class="detail"><span>Email</span><strong>{{ user.email or "Not added" }}</strong></div>
+                            <div class="detail"><span>Location</span><strong>{{ user.location or "Not added" }}</strong></div>
+                            <div class="detail"><span>Company</span><strong>{{ user.company or "Not added" }}</strong></div>
+                            <div class="detail"><span>College</span><strong>{{ user.college or "Not added" }}</strong></div>
+                        </div>
+                    </div>
+                    <div class="card panel">
+                        <h2>Next useful step</h2>
+                        <p class="muted">Complete any missing profile fields so your future issue recommendations can feel more personal.</p>
+                        <div class="actions">
+                            <a class="btn primary" href="{{ url_for('dashBoardRoute.editProfile') }}">Update details</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

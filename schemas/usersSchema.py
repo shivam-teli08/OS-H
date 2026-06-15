@@ -2,6 +2,7 @@ from datetime import datetime
 
 from extensions import db
 
+
 class User(db.Model):
     __tablename__ = "users"
 
@@ -10,12 +11,16 @@ class User(db.Model):
     username = db.Column(db.String(255), nullable=False)
     avatar_url = db.Column(db.Text)
     email = db.Column(db.String(255))
+    bio = db.Column(db.Text)
+    location = db.Column(db.String(255))
+    company = db.Column(db.String(255))
+    college = db.Column(db.String(255))
     created_at = db.Column(
         db.DateTime,
-        default=datetime.utcnow
+        default=datetime.utcnow,
     )
     updated_at = db.Column(
         db.DateTime,
         default=datetime.utcnow,
-        onupdate=datetime.utcnow
+        onupdate=datetime.utcnow,
     )

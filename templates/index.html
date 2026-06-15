@@ -3,10 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>OS-H | Open Source Helper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
 </head>
-<body>
-    <h1>Welcome to OS-H</h1>
-    <a href="{{ url_for('oauthRoute.login') }}"><button style="background-color: black;color:white">Get started</button></a>
+<body class="shell">
+    <header class="topbar">
+        <a class="brand" href="{{ url_for('indexRoute.index') }}">
+            <span class="brand-mark">OS</span>
+            <span>OS-H</span>
+        </a>
+        <nav class="nav-links">
+            <a class="nav-link" href="{{ url_for('oauthRoute.login') }}">Sign in</a>
+            <a class="btn primary" href="{{ url_for('oauthRoute.login') }}">Get started</a>
+        </nav>
+    </header>
+
+    <main class="container hero">
+        <section class="hero-grid">
+            <div>
+                <span class="eyebrow">Open Source Helper</span>
+                <h1>Find your next contribution with less noise.</h1>
+                <p class="lead">OS-H helps new contributors move from GitHub login to focused onboarding, profile setup, and a developer dashboard.</p>
+                <div class="actions">
+                    <a class="btn primary" href="{{ url_for('oauthRoute.login') }}">Continue with GitHub</a>
+                    <a class="btn" href="#preview">Preview workspace</a>
+                </div>
+            </div>
+            <div class="card panel preview" id="preview">
+                <span class="badge">Contributor workspace</span>
+                <div class="issue-row">
+                    <strong>Recommended setup</strong>
+                    <span class="issue-meta">Complete onboarding so OS-H can match issues to your stack.</span>
+                </div>
+                <div class="issue-row">
+                    <strong class="code">good-first-issue</strong>
+                    <span class="issue-meta">Python, JavaScript, Go, Java and your selected interests.</span>
+                </div>
+                <div class="issue-row">
+                    <strong>Profile readiness</strong>
+                    <span class="issue-meta">Email, bio, location, company, and college can be managed after login.</span>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
