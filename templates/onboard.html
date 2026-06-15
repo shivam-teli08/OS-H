@@ -2,51 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>OS-H Onboarding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding | OS-H</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
 </head>
-<body>
+<body class="shell">
+    <header class="topbar">
+        <a class="brand" href="{{ url_for('indexRoute.index') }}">
+            <span class="brand-mark">OS</span>
+            <span>OS-H</span>
+        </a>
+    </header>
 
-<div class="container">
-    <h2>Welcome to OS-H 👋</h2>
-
-    <form action="/save-onboarding" method="POST">
-        <!-- Skill Level -->
-        <label>Skill Level</label>
-        <select name="skill_level" required>
-            <option value="beginner">Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="advanced">Advanced</option>
-        </select>
-
-        <!-- Languages -->
-        <label>Languages</label>
-        <div class="checkbox-group">
-            <label><input type="checkbox" name="languages" value="Python"> Python</label><br>
-            <label><input type="checkbox" name="languages" value="JavaScript"> JavaScript</label><br>
-            <label><input type="checkbox" name="languages" value="Go"> Go</label><br>
-            <label><input type="checkbox" name="languages" value="Java"> Java</label><br>
+    <main class="form-page">
+        <div class="page-head">
+            <div>
+                <span class="eyebrow">Contributor setup</span>
+                <h1 style="margin: 1rem 0 0.25rem;">Tune your issue recommendations.</h1>
+                <p class="lead">These fields match the onboarding data your backend already saves.</p>
+            </div>
         </div>
 
-        <!-- Interests -->
-        <label>Interests</label>
-        <div class="checkbox-group">
-            <label><input type="checkbox" name="interests" value="Backend"> Backend</label><br>
-            <label><input type="checkbox" name="interests" value="Frontend"> Frontend</label><br>
-            <label><input type="checkbox" name="interests" value="DevOps"> DevOps</label><br>
-            <label><input type="checkbox" name="interests" value="AI/ML"> AI/ML</label><br>
-        </div>
+        <form class="card panel grid" action="/save-onboarding" method="POST">
+            <div class="field">
+                <label for="skill_level">Skill Level</label>
+                <select id="skill_level" name="skill_level" required>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+            </div>
 
-        <!-- Goal -->
-        <label>Contribution Goal</label>
-        <select name="goal">
-            <option value="first_contribution">First Contribution</option>
-            <option value="portfolio">Build Portfolio</option>
-            <option value="hacktoberfest">Hacktoberfest</option>
-        </select>
+            <div class="field">
+                <label>Languages</label>
+                <div class="checks">
+                    <label class="check"><input type="checkbox" name="languages" value="Python"> Python</label>
+                    <label class="check"><input type="checkbox" name="languages" value="JavaScript"> JavaScript</label>
+                    <label class="check"><input type="checkbox" name="languages" value="Go"> Go</label>
+                    <label class="check"><input type="checkbox" name="languages" value="Java"> Java</label>
+                </div>
+            </div>
 
-        <button type="submit">Continue</button>
-    </form>
-</div>
+            <div class="field">
+                <label>Interests</label>
+                <div class="checks">
+                    <label class="check"><input type="checkbox" name="interests" value="Backend"> Backend</label>
+                    <label class="check"><input type="checkbox" name="interests" value="Frontend"> Frontend</label>
+                    <label class="check"><input type="checkbox" name="interests" value="DevOps"> DevOps</label>
+                    <label class="check"><input type="checkbox" name="interests" value="AI/ML"> AI/ML</label>
+                </div>
+            </div>
 
+            <div class="field">
+                <label for="goal">Contribution Goal</label>
+                <select id="goal" name="goal">
+                    <option value="first_contribution">First Contribution</option>
+                    <option value="portfolio">Build Portfolio</option>
+                    <option value="hacktoberfest">Hacktoberfest</option>
+                </select>
+            </div>
+
+            <div class="actions">
+                <button class="btn primary" type="submit">Continue to dashboard</button>
+            </div>
+        </form>
+    </main>
 </body>
 </html>

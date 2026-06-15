@@ -3,11 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OS-H registration</title>
+    <title>Sign in | OS-H</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
 </head>
-<body>
-    <a href="{{ url_for('oauthRoute.oAuth') }}">
-    <button>Continue with GitHub</button>
-</a>
+<body class="shell">
+    <header class="topbar">
+        <a class="brand" href="{{ url_for('indexRoute.index') }}">
+            <span class="brand-mark">OS</span>
+            <span>OS-H</span>
+        </a>
+    </header>
+    <main class="container hero">
+        <section class="card panel" style="max-width: 520px; margin: 0 auto;">
+            <span class="eyebrow">GitHub OAuth</span>
+            <h1 style="font-size: clamp(2rem, 5vw, 3.4rem); margin: 1rem 0;">Start with your GitHub identity.</h1>
+            <p class="lead">OS-H uses GitHub login to create or find your contributor account, then sends new users through onboarding.</p>
+            <div class="actions">
+                <a class="btn primary" href="{{ url_for('oauthRoute.oAuth') }}">Continue with GitHub</a>
+                <a class="btn" href="{{ url_for('indexRoute.index') }}">Back home</a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile | OS-H</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+    <div class="dashboard-layout shell">
+        <aside class="sidebar">
+            <a class="brand" href="{{ url_for('dashBoardRoute.dashboard') }}">
+                <span class="brand-mark">OS</span>
+                <span>OS-H</span>
+            </a>
+            <nav class="grid">
+                <a class="nav-link" href="{{ url_for('dashBoardRoute.dashboard') }}">Dashboard</a>
+                <a class="nav-link" href="{{ url_for('dashBoardRoute.profile') }}">Profile</a>
+                <a class="nav-link active" href="{{ url_for('dashBoardRoute.editProfile') }}">Edit profile</a>
+            </nav>
+        </aside>
+
+        <main class="main">
+            <div class="form-page">
+                <div class="page-head">
+                    <div>
+                        <span class="eyebrow">Settings</span>
+                        <h1 style="margin: 0.75rem 0 0.25rem;">Edit profile</h1>
+                        <p class="muted">Update the profile fields your backend currently stores.</p>
+                    </div>
+                </div>
+
+                {% if missing_fields %}
+                <div class="missing">
+                    {% for field in missing_fields %}
+                    <span class="badge">{{ field | capitalize }} missing</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <form class="card panel form-grid" method="POST" action="{{ url_for('dashBoardRoute.editProfile') }}">
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" name="email" value="{{ user.email or '' }}" placeholder="you@example.com">
+                    </div>
+
+                    <div class="field">
+                        <label for="location">Location</label>
+                        <input id="location" type="text" name="location" value="{{ user.location or '' }}" placeholder="City, Country">
+                    </div>
+
+                    <div class="field">
+                        <label for="company">Company</label>
+                        <input id="company" type="text" name="company" value="{{ user.company or '' }}" placeholder="Company or organization">
+                    </div>
+
+                    <div class="field">
+                        <label for="college">College</label>
+                        <input id="college" type="text" name="college" value="{{ user.college or '' }}" placeholder="College or university">
+                    </div>
+
+                    <div class="field full">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" name="bio" placeholder="What do you like building?">{{ user.bio or '' }}</textarea>
+                    </div>
+
+                    <div class="field full">
+                        <div class="actions">
+                            <button class="btn primary" type="submit">Save changes</button>
+                            <a class="btn" href="{{ url_for('dashBoardRoute.profile') }}">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
