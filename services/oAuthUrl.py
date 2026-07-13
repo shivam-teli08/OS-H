@@ -16,9 +16,5 @@ def login():
         "state": state,
         "scope": "read:user user:email",
     }
-    # redirect_uri = os.getenv("GITHUB_REDIRECT_URI")
-    # if redirect_uri:
-    #     params["redirect_uri"] = redirect_uri
-
     url = f"https://github.com/login/oauth/authorize?{urlencode(params)}"
     return redirect(url)

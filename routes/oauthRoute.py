@@ -46,7 +46,7 @@ def callback():
         )
 
         access_token = token_res.json().get("access_token")
-
+        
         user_res = requests.get(
             "https://api.github.com/user",
             headers={"Authorization": f"Bearer {access_token}"},

@@ -22,17 +22,21 @@ def CheckUserExists(userJsonSchema):
     return user, False
 
 def save_onboarding(form_data):
-    skill_level = form_data.get("skill_level", "beginner")
+    experience_level = form_data.get("experience_level", form_data.get("skill_level", "beginner"))
     goal = form_data.get("goal", "first_contribution")
     languages = form_data.getlist("languages") or []
-    interests = form_data.getlist("interests") or []  
-    user_id=session["user_id"]
+    frameworks = form_data.getlist("frameworks") or []
+    interests = form_data.getlist("interests") or []
+    weekly_availability = form_data.get("weekly_availability", "1-3 hrs/week")
+    user_id = session["user_id"]
     profile = Intrests(
         user_id=user_id,
-        skill_level=skill_level,
+        skill_level=experience_level,
         goal=goal,
         languages=languages,
-        interests=interests
+        frameworks=frameworks,
+        interests=interests,
+        weekly_availability=weekly_availability,
     )
     db.session.add(profile)
     db.session.commit()
