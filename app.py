@@ -3,6 +3,8 @@ import os
 from datetime import timedelta 
 from dotenv import load_dotenv
 from extensions import db
+
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
@@ -24,8 +26,11 @@ from routes.indexRoute import indexRoute
 from routes.oauthRoute import oauthRoute_bp
 from routes.dashBoardRoute import dashBoardRoutebp
 from routes.onBoardingRoute import onBoardingRoutebp
+from routes.repositoryRoute import repository_bp
+
 
 app.register_blueprint(indexRoute)
 app.register_blueprint(oauthRoute_bp)
 app.register_blueprint(dashBoardRoutebp)
 app.register_blueprint(onBoardingRoutebp)
+app.register_blueprint(repository_bp)

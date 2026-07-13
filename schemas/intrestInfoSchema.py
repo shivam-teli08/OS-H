@@ -14,9 +14,11 @@ class Intrests(db.Model):
         unique=True
     )
     languages = db.Column(ARRAY(db.String), default=[])
+    frameworks = db.Column(ARRAY(db.String), default=[])
     skill_level = db.Column(db.String(50), nullable=False)
     goal = db.Column(db.String(100), nullable=False)
     interests = db.Column(ARRAY(db.String), default=[])
+    weekly_availability = db.Column(db.String(50), nullable=False, default="1-3 hrs/week")
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(
         db.DateTime,
