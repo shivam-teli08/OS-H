@@ -16,11 +16,10 @@ app.config["SQLALCHEMY_DATABASE_URI"] = (
     f"{os.getenv('DB_PORT')}/"
     f"{os.getenv('DB_NAME')}"
 )
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
-app.permanent_session_lifetime=timedelta(days=7)
-app.secret_key=os.getenv("SECRET_KEY")
-if not app.secret_key:
-    raise RuntimeError("SECRET_KEY is missing. Add SECRET_KEY to .env before starting the app.")
+app.permanent_session_lifetime = timedelta(days=7)
+app.secret_key = os.getenv("SECRET_KEY", "dev-secret-key")
 
 from routes.indexRoute import indexRoute
 from routes.oauthRoute import oauthRoute_bp
