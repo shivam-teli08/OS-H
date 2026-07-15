@@ -25,11 +25,10 @@ from routes.indexRoute import indexRoute
 from routes.oauthRoute import oauthRoute_bp
 from routes.dashBoardRoute import dashBoardRoutebp
 from routes.onBoardingRoute import onBoardingRoutebp
-from routes.repositoryRoute import repository_bp
-
+from routes.repo import repo_bp
 
 app.register_blueprint(indexRoute)
 app.register_blueprint(oauthRoute_bp)
 app.register_blueprint(dashBoardRoutebp)
 app.register_blueprint(onBoardingRoutebp)
-app.register_blueprint(repository_bp)
+app.register_blueprint(repo_bp)
