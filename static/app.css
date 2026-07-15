@@ -159,7 +159,7 @@ p {
 }
 
 .muted,
-.issue-meta {
+.workspace-meta {
     color: var(--muted);
 }
 
@@ -205,7 +205,7 @@ p {
     gap: 1rem;
 }
 
-.issue-row,
+.workspace-row,
 .stat-card {
     padding: 1rem;
     background: rgba(34, 42, 61, 0.7);
@@ -213,7 +213,7 @@ p {
     border-radius: 0.5rem;
 }
 
-.issue-row {
+.workspace-row {
     display: grid;
     gap: 0.45rem;
 }

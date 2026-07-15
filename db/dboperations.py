@@ -29,15 +29,25 @@ def save_onboarding(form_data):
     interests = form_data.getlist("interests") or []
     weekly_availability = form_data.get("weekly_availability", "1-3 hrs/week")
     user_id = session["user_id"]
-    profile = Intrests(
-        user_id=user_id,
-        skill_level=experience_level,
-        goal=goal,
-        languages=languages,
-        frameworks=frameworks,
-        interests=interests,
-        weekly_availability=weekly_availability,
-    )
-    db.session.add(profile)
+    profile = Intrests.query.filter_by(user_id=user_id).first()
+
+    if profile:
+        profile.skill_level = experience_level
+        profile.goal = goal
+        profile.languages = languages
+        profile.frameworks = frameworks
+        profile.interests = interests
+        profile.weekly_availability = weekly_availability
+    else:
+        profile = Intrests(
+            user_id=user_id,
+            skill_level=experience_level,
+            goal=goal,
+            languages=languages,
+            frameworks=frameworks,
+            interests=interests,
+            weekly_availability=weekly_availability,
+        )
+        db.session.add(profile)
     db.session.commit()
     return profile
