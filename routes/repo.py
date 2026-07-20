@@ -2,6 +2,7 @@ from flask import Blueprint
 from schemas.repository import Repository
 from services.repository_discovery import search_repository
 from db.save_repositories import save_repositories
+from services.issue_discovery import discover_issues
 repo_bp = Blueprint("repo", __name__)
 
 TARGET_REPOS_PER_LANGUAGE = 100
@@ -28,3 +29,8 @@ def search_repositories():
     return {
         "message": "Repository discovery completed."
     }, 200
+
+@repo_bp.route("/issues", methods=["GET"])
+def discover_isss():
+    result = discover_issues()
+    return result if result else {"message": "No issues found or failed to fetch issues."}, 200

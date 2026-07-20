@@ -1,10 +1,7 @@
-from flask import Blueprint, redirect, render_template, session, url_for
-
+from flask import Blueprint, render_template
+from middlewares.authMiddleware import login_check
 indexRoute = Blueprint('indexRoute', __name__)
-
-
 @indexRoute.route('/')
+@login_check
 def index():
-    if session.get("github_id") and session.get("username"):
-        return redirect(url_for("dashBoardRoute.dashboard"))
     return render_template('index.html')
